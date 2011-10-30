@@ -3,6 +3,9 @@ html, body, #map {
     height: 100%;
     width: 100%;
 }
+#map {
+    cursor: move;
+}
 div.olControlAttribution {
     position: absolute;
     font-size: 10px;
@@ -26,6 +29,7 @@ div.olControlZoomPanel {
     right: 20px;
 }
 div.olControlZoomPanel div {
+    cursor: pointer;
     width: 36px;
     height: 36px;
     left: 0;
@@ -70,6 +74,7 @@ div.olControlGeolocateItemInactive {
 }
 div.olControlZoomPanel div.olControlGeolocateItemInactive,
 div.olControlZoomPanel div.olControlGeolocateItemActive {
+    position: absolute;
     top: 98px;
     border-radius: 5px 5px 5px 5px;
     background: #ccc url(img/locate.png) center no-repeat;

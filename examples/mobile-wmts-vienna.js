@@ -26,7 +26,7 @@ var map;
             }
         }
     });
-    var labelButton = new OpenLayers.Control.Button({
+    var labelButton = new OpenLayers.Control({
         type: OpenLayers.Control.TYPE_TOGGLE,
         displayClass: "labelButton",
         eventListeners: {
@@ -93,6 +93,7 @@ var map;
 
     map = new OpenLayers.Map({
         div: "map",
+        theme: null,
         projection: "EPSG:900913",
         units: "m",
         maxExtent: new OpenLayers.Bounds(
@@ -110,7 +111,8 @@ var map;
                 enableKinetic: {
                     deceleration: 0.02
                 }
-            }
+            },
+            zoomBoxEnabled: false
         }),
         new OpenLayers.Control.Attribution(),
         zoomPanel,
