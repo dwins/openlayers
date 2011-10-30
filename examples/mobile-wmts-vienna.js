@@ -102,22 +102,29 @@ var map;
         maxResolution: 156543.0339,
         numZoomLevels: 20,
         controls: [
-        new OpenLayers.Control.Navigation({
-            mouseWheelOptions: {
-                cumulative: false,
-                interval: 20
-            },
-            dragPanOptions: {
-                enableKinetic: {
-                    deceleration: 0.02
-                }
-            },
-            zoomBoxEnabled: false
-        }),
-        new OpenLayers.Control.Attribution(),
-        zoomPanel,
-        layerPanel
-        ]
+            new OpenLayers.Control.ArgParser(),
+            new OpenLayers.Control.Navigation({
+                mouseWheelOptions: {
+                    cumulative: false,
+                    interval: 20
+                },
+                dragPanOptions: {
+                    enableKinetic: {
+                        deceleration: 0.02
+                    }
+                },
+                zoomBoxEnabled: false
+            }),
+            new OpenLayers.Control.Attribution(),
+            zoomPanel,
+            layerPanel
+        ],
+        eventListeners: {
+            moveend: function() {
+                var ctr = map.getCenter();
+                window.location.hash = "x="+ctr.lon+"&y="+ctr.lat+"&z="+map.getZoom();
+            }
+        }
     });
     layerPanel.activateControl(mapButton);
     layerPanel.activateControl(labelButton);
@@ -155,7 +162,11 @@ var map;
     var vector = new OpenLayers.Layer.Vector("Vector Layer");
 
     map.addLayers([fmzk, beschriftung, lb]);
-    map.setCenter(extent.getCenterLonLat(), 12);
+    
+    var params = OpenLayers.Util.getParameters("?"+window.location.hash.substr(1));
+    var ctr = extent.getCenterLonLat();
+    OpenLayers.Util.applyDefaults(params, {x:ctr.lon, y:ctr.lat, z:12});
+    map.setCenter(new OpenLayers.LonLat(params.x, params.y), params.z);
 
 })();
 
