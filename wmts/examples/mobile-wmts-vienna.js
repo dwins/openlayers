@@ -134,7 +134,7 @@ var map;
         tileFullExtent: extent,
         transitionEffect: "resize",
         tileLoadingDelay: 0,
-        attribution: '<a href="http://www.wien.gv.at/advuew/internet/AdvPrSrv.asp?Layout=stelle&Type=K&stellecd=1995060915202303">MA 41 - Stadtvermessung Wien</a> | <a href="http://data.wien.gv.at/nutzungsbedingungen/index.html">Nutzungsbedingungen</a>'
+        attribution: 'Datenquelle: Stadt Wien - <a href="http://data.wien.gv.at">data.wien.gv.at</a>'
     };
 
     var fmzk = new OpenLayers.Layer.WMTS(OpenLayers.Util.applyDefaults({
