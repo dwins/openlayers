@@ -262,14 +262,14 @@
         tile = new OpenLayers.Tile.Image(layer, position, new OpenLayers.Bounds(-90,-85,-90,85), url, size);
         tile.draw();
         tile.moveTo(new OpenLayers.Bounds(-185,-90,-180,-80), new OpenLayers.Pixel(-180,-85), true);
-        t.delay_call( 1, function() { t.eq(tile.imgDiv.style.visibility, "hidden", "Tile image is invisible.") } );
+        t.delay_call( 1, function() { t.eq(tile.imgDiv.style.opacity, "0", "Tile image is invisible.") } );
         var layer = new OpenLayers.Layer.WMS( "OpenLayers WMS", 
             "http://labs.metacarta.com/wms/vmap0?", {layers: 'basic'}, {'alpha':true});
         map.addLayer(layer);
         tile = new OpenLayers.Tile.Image(layer, position, new OpenLayers.Bounds(-90,-85,-90,85), url, size);
         tile.draw();
         tile.moveTo(new OpenLayers.Bounds(-185,-90,-180,-80), new OpenLayers.Pixel(-180,-85), true)
-        t.delay_call( 1, function() { t.eq(tile.imgDiv.style.visibility, "hidden", "Alpha tile image is invisible.") } );
+        t.delay_call( 1, function() { t.eq(tile.imgDiv.style.opacity, "0", "Alpha tile image is invisible.") } );
         
     }
 
@@ -359,7 +359,7 @@
 
         log = 0;
         tile.onImageLoad();
-        t.eq(tile.imgDiv.style.visibility, 'inherit',
+        t.ok(tile.imgDiv.style.opacity != "0",
              'onImageLoad makes the image visible');
         t.eq(parseFloat(tile.imgDiv.style.opacity), 0.5,
              'onImageLoad sets the expected opacity for the image');
