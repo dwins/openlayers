@@ -144,6 +144,7 @@ var map;
     }
 
     // Request capabilities and create layers
+    /*
     OpenLayers.ProxyHost = "proxy.cgi?url=";    
     OpenLayers.Request.GET({
         url: "http://maps.wien.gv.at/wmts/1.0.0/WMTSCapabilities.xml",
@@ -170,12 +171,13 @@ var map;
             zoomToInitialExtent();
         }
     });
+    */
     
     // Instead of building the layers from the capabilities document, we could
     // look at it ourselves and create the layers manually. If you want to try
     // that, uncomment the following code and remove the "Request capabilities
     // and create layers" block above.
-    /*
+    /**/
     var extent = new OpenLayers.Bounds(1799448.394855, 6124949.74777, 1848250.442089, 6162571.828177);
     var defaults = {
         requestEncoding: "REST",
@@ -207,7 +209,7 @@ var map;
     defaults));
     map.addLayers([fmzk, aerial, labels]);
     zoomToInitialExtent();
-    */
+    /**/
 
 })();
 
