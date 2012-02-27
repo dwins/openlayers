@@ -63,7 +63,8 @@
         r.map = {
             getResolution: function() {
                 return 0.5;
-            }
+            },
+            wrapDateLine: function() { return false; }
         }
         
         var extent = new OpenLayers.Bounds(1,2,3,4);
@@ -402,7 +403,8 @@
         r.map = {
             getResolution: function() {
                 return 0.5;
-            }
+            },
+            wrapDateLine: function() { return false; }
         }
         r.setExtent(new OpenLayers.Bounds(0, 0, 0, 0));
 

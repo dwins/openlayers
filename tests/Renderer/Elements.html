@@ -620,7 +620,7 @@
             getResolution: function() {
                 return resolution;
             },
-            baseLayer: {wrapDateLine: true}
+            wrapDateLine: function() { return true; }
         }
         
         r.setExtent(new OpenLayers.Bounds(179, -1, 182, 1), true);

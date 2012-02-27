@@ -395,7 +395,7 @@
  */
 
     function test_Map_isValidZoomLevel(t) {
-        t.plan(5);
+        t.plan(4);
         var map = new OpenLayers.Map("map");
         map.addLayer(new OpenLayers.Layer(null, {
             isBaseLayer: true, wrapDateLine: true, numZoomLevels: 19
@@ -416,9 +416,6 @@
         valid = OpenLayers.Map.prototype.isValidZoomLevel.apply(map, [19]);
         t.eq(valid, false, "19 is not a valid zoomLevel");
         
-        map.moveTo([16, 48], 0);
-        t.eq(map.getCenter().toShortString(), "0, 0", "no panning when moveTo is called with invalid zoom");
-
         map.destroy();
     }
     
@@ -2000,8 +1997,8 @@
         t.eq(map.layerContainerDiv.style.top, '0px', 'layer container top correct');
     }
 
-    function test_adjustZoom(t) {
-        t.plan(4);
+    function test_wrapDateLine(t) {
+        t.plan(2);
         var map = new OpenLayers.Map({
             div: 'map',
             layers: [
@@ -2011,14 +2008,9 @@
                 })
             ]
         });
+        t.eq(map.wrapDateLine(), true, "wrapping the date line when map is not wider than world");
         map.zoomToMaxExtent();
-        t.ok(map.getResolution() <= map.getMaxExtent().getWidth() / map.getSize().w, "wrapDateLine map not wider than world");
-        
-        t.eq(map.adjustZoom(9), 9, "valid zoom maintained");
-        t.eq(map.adjustZoom(1), 2, "zoom adjusted to not exceed world width");
-
-        map.moveTo([16, 48], 0);
-        t.eq(map.getCenter().toShortString(), "0, 0", "no panning when moveTo is called with invalid zoom");
+        t.eq(map.wrapDateLine(), false, "not wrapping the date line when map is wider than world");
     }
   </script>
 </head>
