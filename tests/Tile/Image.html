@@ -350,6 +350,8 @@
 
     function test_onImageLoad(t) {
         t.plan(3);
+        var origRequestFrame = OpenLayers.Animation.requestFrame;
+        OpenLayers.Animation.requestFrame = function(callback) { callback(); };
 
         var map = new OpenLayers.Map('map');
         var layer = new OpenLayers.Layer.WMS( "OpenLayers WMS",
@@ -372,6 +374,7 @@
              'onImageLoad does trigger loadend');
 
         map.destroy();
+        OpenLayers.Animation.requestFrame = origRequestFrame;
     }
 
     // test for https://github.com/openlayers/openlayers/pull/36
